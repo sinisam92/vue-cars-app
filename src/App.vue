@@ -9,12 +9,15 @@
 <script>
 import NavBar from "./components/NavBar";
 import AppCars from "./components/AppCars";
+import AddCars from "./components/AddCars";
+
 
 export default {
   name: 'app',
   components: {
     NavBar,
-    AppCars
+    AppCars,
+    AddCars
   }
 }
 </script>

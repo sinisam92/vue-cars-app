@@ -1,11 +1,10 @@
 <template>
-    <div class="container">
+    <div>
         <nav class="navbar navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Navbar</a>
        
            <router-link to="/cars">Cars</router-link> 
-        
-            <a class="nav-link" href="#">Features</a>
+           <router-link to="/add">Add Cars</router-link>
         
             <a class="nav-link" href="#">Pricing</a>
         
