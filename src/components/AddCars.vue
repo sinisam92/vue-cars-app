@@ -23,6 +23,7 @@
                 <input type="checkbox" v-model="newCar.isAutomatic">
                 <label class="custom-controll">Automatic</label>
             </div>
+        
              <div class="engine-input">
                  <label>Disel</label>
                 <input type="radio" v-model="newCar.engine" value="Disel">
@@ -35,7 +36,9 @@
             </div>
            
             <button type="submit" class="btn btn-primary">Add car</button>
-    </form>
+        </form>
+            <button type="submit" class="btn btn-info" @click="resetForm">Reset</button>
+         
     </div>
 </template>
 <script>
@@ -54,6 +57,9 @@ export default {
             CarsService.add(this.newCar);
             this.newCar = {}
             this.$router.push({ path: '/cars' })
+        },
+        resetForm() {
+            this.newCar = {}
         }
     }
 }
@@ -64,6 +70,10 @@ export default {
 }
 .engine-input label {
     margin-left: 12px;
+}
+.btn-info {
+    margin-top: 6px;
+    padding: 7px 18px 7px 18px;
 }
 </style>
 
