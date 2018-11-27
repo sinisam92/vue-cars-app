@@ -1,43 +1,44 @@
 <template>
     <div class="container">
-        <form @submit.prevent="addCar">
+        <form @submit.prevent="addCar" ref="form">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Brand" v-model="newCar.brand">
+                <input type="text" name="file" class="form-control" placeholder="Brand" v-model="newCar.brand">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Model" v-model="newCar.model">
+                <input type="text" name="file" class="form-control" placeholder="Model" v-model="newCar.model">
             </div>
              <div class="form-group">
-                <input type="number" class="form-control" placeholder="Max Speed" v-model="newCar.maxSpeed">
+                <input type="number" name="file" class="form-control" placeholder="Max Speed" v-model="newCar.maxSpeed">
             </div>
              <div class="form-group">
-                <input type="number" class="form-control" placeholder="Number Of Doors" v-model="newCar.numberOfDoors">
+                <input type="number"  class="form-control" placeholder="Number Of Doors" v-model="newCar.numberOfDoors" name="file">
             </div>
-            <select  aria-placeholder="Select Section" v-model="newCar.year" :value="years">
+            <select  aria-placeholder="Select Section" v-model="newCar.year" :value="years" name="file" >
                 <option disabled value="">Select year</option>
                 <option v-for="(year, index) in years" :key="index">
                     {{ year }}
                 </option>
             </select>
             <div class="custom-control ">
-                <input type="checkbox" v-model="newCar.isAutomatic">
+                <input type="checkbox" v-model="newCar.isAutomatic" name="file" >
                 <label class="custom-controll">Automatic</label>
             </div>
         
              <div class="engine-input">
                  <label>Disel</label>
-                <input type="radio" v-model="newCar.engine" value="Disel">
+                <input type="radio" v-model="newCar.engine" value="Disel" name="file">
                 <label>Petrol</label>
-                <input type="radio" v-model="newCar.engine" value="Petrol">
+                <input type="radio" v-model="newCar.engine" value="Petrol" name="file">
                 <label>Electric</label>
-                <input type="radio" v-model="newCar.engine" value="Electric">
+                <input type="radio" v-model="newCar.engine" value="Electric" name="file">
                 <label>Hybrid</label>
-                <input type="radio" v-model="newCar.engine" value="Hybrid">
+                <input type="radio" v-model="newCar.engine" value="Hybrid" name="file">
             </div>
            
             <button type="submit" class="btn btn-primary">Add car</button>
+            <button type="submit" class="btn btn-info" @click.stop.prevent="previewCar">Preview</button>
+            <button  class="btn btn-danger" @click.stop.prevent="resetForm">Reset</button>
         </form>
-            <button type="submit" class="btn btn-info" @click="resetForm">Reset</button>
          
     </div>
 </template>
@@ -49,7 +50,9 @@ export default {
            years: Array(29).fill(1990).map((n, i) => n + i),
            newCar: {
                isAutomatic: false
-           }
+           },
+           file: ''
+        
         }
     },
     methods: {
@@ -60,6 +63,11 @@ export default {
         },
         resetForm() {
             this.newCar = {}
+        },
+        previewCar() {
+           let stringForm = JSON.stringify(this.newCar);
+           let parseString = JSON.parse(stringForm);
+           alert(`Brand:${ parseString.brand }\nModel:${ parseString.model }\nMax Speed:${ parseString.maxSpeed }\n Number Of Doors:${ parseString.numberOfDoors }\n Year:${ parseString.year }\nAutomatic:${ parseString.isAutomatic }\n Engine:${ parseString.engine }`);
         }
     }
 }
@@ -71,9 +79,9 @@ export default {
 .engine-input label {
     margin-left: 12px;
 }
-.btn-info {
+.btn {
     margin-top: 6px;
-    padding: 7px 18px 7px 18px;
+    margin-left: 6px;  
 }
 </style>
 
