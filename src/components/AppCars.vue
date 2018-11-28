@@ -25,13 +25,16 @@
                     <router-link :to="{ name: 'edit-car', params: { id: car.id }}">
                         <button class="btn btn-success">Edit</button>
                     </router-link>
+                    <button class="btn btn-danger">Delete</button>
                 </tr>
             </tbody>
         </table>
     </div>
 </template>
 <script>
+
 import CarsService from "../services/CarsService";
+
 export default {
     data() {
         return {

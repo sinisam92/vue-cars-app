@@ -62,7 +62,7 @@ export default {
         }
     },
     created() {
-        this.$route.params.id && CarsService.get(this.$route.params.id)
+        CarsService.get(this.$route.params.id)
             .then((response)=> {
                 this.car = response.data
             });
