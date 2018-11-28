@@ -74,7 +74,6 @@ export default {
             }else {
                 this.addCar()
             };
-        
         },
         
         addCar() {
