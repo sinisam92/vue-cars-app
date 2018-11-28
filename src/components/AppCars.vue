@@ -18,9 +18,13 @@
                     <td>{{ car.model }}</td>
                     <td>{{ car.year}}</td>
                     <td>{{ car.maxSpeed}}</td>
-                    <td>{{ car.isAutomatic }}</td>
+                    <td>{{ car.isAutomatic ? 'Automatic' : 'Manual'}}</td>
                     <td>{{ car.engine }}</td>
                     <td>{{ car.numberOfDoors }}</td>
+
+                    <router-link :to="{ name: 'edit-car', params: { id: car.id }}">
+                        <button class="btn btn-success">Edit</button>
+                    </router-link>
                 </tr>
             </tbody>
         </table>
@@ -49,6 +53,10 @@ export default {
 <style scoped>
 table {
     border: 5px;
+}
+.btn {
+    margin-left: 5px;
+    margin-top: 2px; 
 }
 </style>
 

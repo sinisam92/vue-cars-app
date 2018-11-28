@@ -7,17 +7,13 @@
 </template>
 
 <script>
-import NavBar from "./components/NavBar";
-import AppCars from "./components/AppCars";
-import AddCars from "./components/AddCars";
 
+import NavBar from "./components/NavBar";
 
 export default {
   name: 'app',
   components: {
     NavBar,
-    AppCars,
-    AddCars
   }
 }
 </script>
