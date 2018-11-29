@@ -41,54 +41,56 @@
                             </div>
                         </div>
                     
-                        <button type="submit" class="btn btn-primary">Add car</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                         <button type="submit" class="btn btn-info" @click.stop.prevent="previewCar">Preview</button>
                         <button  class="btn btn-danger" @click.stop.prevent="resetForm">Reset</button>
                     </form>
-                </div><!-- /col -->
-            </div><!-- /row -->
-        </div><!-- /container -->  
+                </div>
+            </div>
+        </div> 
     </div>
 </template>
 <script>
 import CarsService from "../services/CarsService";
 export default {
+  created() {
+        this.$route.params.id && CarsService.get(this.$route.params.id)
+            .then((response)=> {
+                this.car = response.data
+                this.newCar = response.data
+            }).catch((error) => {
+                console.log(error.response.data);
+                
+            });
+  },
     data() {
         return {
            years: Array(29).fill(1990).map((n, i) => n + i),
            newCar: {
-               isAutomatic: false
-           }
+               isAutomatic: false,
+           },
+           
         }
-    },
-    created() {
-        CarsService.get(this.$route.params.id)
-            .then((response)=> {
-                this.car = response.data
-            });
-    },
+    },  
     methods: {
         onSubmit() {
-            if(this.car.id){
+            if(this.$route.params.id){
                 this.editCar()
-            }else {
-                this.addCar()
+            } else {
+                this.addCar() 
             };
         },
         
         addCar() {
-            CarsService.add(this.newCar);
-            this.newCar = {};
-            this.$router.push({ path: '/cars' });
+            CarsService.add(this.newCar)
+             this.newCar = {}
+             this.$router.push({ path: '/cars' })
         },
         editCar() {
-            CarsService.edit( this.car.id, this.newCar) 
-                .then((success) => {
-                    this.$router.push({ path: '/cars' });
-                }).catch((error) => {
-                    console.log(error);
-                    
-                })     
+            CarsService.edit(this.car.id , this.newCar) 
+            this.$router.push({ path: '/cars' });
+             
+          
         },
         resetForm() {
             this.newCar = {}
@@ -97,7 +99,7 @@ export default {
            let stringForm = JSON.stringify(this.newCar);
            let car = JSON.parse(stringForm);
            alert(`Brand:${ car.brand }\nModel:${ car.model }\nMax Speed:${ car.maxSpeed }\n Number Of Doors:${ car.numberOfDoors }\n Year:${ car.year }\n${ car.isAutomatic ? 'Automatic' : 'Manual'}\n Engine:${ car.engine }`);
-        }
+        },
     }
 }
 </script>

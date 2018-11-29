@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="jumbotron">
         <table border="1">
             <thead>
                 <th>Id</th>
@@ -25,7 +25,7 @@
                     <router-link :to="{ name: 'edit-car', params: { id: car.id }}">
                         <button class="btn btn-success">Edit</button>
                     </router-link>
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-danger" @click="deleteCar(car.id)">Delete</button>
                 </tr>
             </tbody>
         </table>
@@ -49,8 +49,19 @@ export default {
             }).catch(error =>{
                 console.log(error.response);
                 
-            })
+            })       
     },
+    methods: {
+        deleteCar(id) {
+          let whySoSerious = prompt(`Are you sure? Yes/ No`)
+          if(whySoSerious == 'Yes') {
+
+              CarsService.delete(id)
+          }
+            
+        }
+    }
+   
 }
 </script>
 <style scoped>
