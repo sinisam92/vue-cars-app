@@ -10,7 +10,7 @@ class CarsService {
           
     }
     add(newCar) {
-        axios.post('cars', newCar)
+        return axios.post('cars', newCar)
     }
     get(id) {
         return axios.get(`cars/${id}`)

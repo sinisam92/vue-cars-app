@@ -83,12 +83,23 @@ export default {
         
         addCar() {
             CarsService.add(this.newCar)
-             this.newCar = {}
-             this.$router.push({ path: '/cars' })
+                .then(response => {
+                    this.newCar = {}
+                    this.$router.push({ path: '/cars' })
+                }).catch(error => {
+                    console.log(error.response);
+                    
+                })
         },
         editCar() {
-            CarsService.edit(this.car.id , this.newCar) 
-            this.$router.push({ path: '/cars' });
+            CarsService.edit(this.car.id , this.newCar)
+                .then(response => {
+
+                    this.$router.push({ path: '/cars' });
+                }).catch(error => {
+                    console.log(error.response);
+                    
+                }) 
              
           
         },
