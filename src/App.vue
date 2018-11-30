@@ -2,29 +2,27 @@
   <div id="app">
     <nav-bar/>
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-  <router-view/>
+    <router-view/>
   </div>
 </template>
 
 <script>
-
 import NavBar from "./components/NavBar";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    NavBar,
+    NavBar
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
 }
 </style>
